@@ -1,18 +1,15 @@
 from django.http import HttpResponse,HttpResponseServerError, HttpResponseRedirect, StreamingHttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.views.decorators import gzip
-from .models import User, RetailerUser, BrandUser
+from .models import User, RetailerUser, BrandUser, Contracts
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from .forms import RetailerRegisterForm, BrandRegisterForm, RetailStoreInformationForm
+from .forms import RetailerRegisterForm, BrandRegisterForm, RetailStoreInformationForm, ContractForm
 import cv2
 import numpy as np
 import time
 import os
-
-def login(request):
-    return render(request,'login.html')
 
 
 def get_frame():
@@ -43,8 +40,19 @@ def camera_on(request):
 # Create your views here.
 def index(request):
     try:
-        retailer = RetailerUser.objects.get(user=request.user)
-        return render(request, 'index.html', {'retailer': retailer})
+        if request.user.is_retailer:
+            retailer = RetailerUser.objects.get(user=request.user)
+            return render(request, 'index.html', {'retailer': retailer})
+        else:
+            brand = BrandUser.objects.get(user=request.user)
+            contracts = Contracts.objects.filter(contract_brand=brand)
+            # all_contracts = []
+            # for contract in contracts:
+            #     temp = []
+            #     retailer = contract.brand_retailer
+            #     print("Hello")
+            #     print(retailer.top_price)
+            return render(request, 'index.html', {'contracts' : contracts})
     except:
         return render(request, 'index.html')
     
@@ -87,7 +95,6 @@ def retailer_info(request):
         if form.is_valid():
             # form.save()
             retailer = RetailerUser.objects.get(user=request.user)
-            print(form.cleaned_data.get('premium_positions'))
             retailer.no_of_aisles = form.cleaned_data.get('no_of_aisles')
             retailer.premium_positions = form.cleaned_data.get('premium_positions')
             retailer.top_price = form.cleaned_data.get('top_price')
@@ -102,4 +109,35 @@ def retailer_info(request):
     else:
         form = RetailStoreInformationForm()
     return render(request, 'retailer_info.html', {'form': form})
+
+@login_required
+def contract_view(request, id):
+    user = User.objects.get(id=id)
+    retailer = RetailerUser.objects.get(user=user)
+    
+    if request.method == "POST":
+        form = ContractForm(request.POST)
+        if form.is_valid():
+            contract = Contracts()
+            contract.desired_positions = form.cleaned_data.get('desired_positions')
+            contract.precent_visibility = form.cleaned_data.get('precent_visibility')
+            contract.contract_retailer = user
+            contract.contract_brand = BrandUser.objects.get(user=request.user)
+            contract.save()
+
+            return redirect('index')
+        else:
+            print(form.errors)
+    else:
+        form = ContractForm()
+    return render(request, 'contract.html', {'form': form, 'this_user' : user, 'retailer' : retailer})
+
+
+class RetailerListView(ListView):
+    model = User
+    template_name = 'brand_contract.html'
+    context_object_name = 'users'
+
+
+    
             

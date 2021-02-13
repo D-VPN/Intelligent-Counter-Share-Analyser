@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{%block content%}
+    <h2 class="my-5">Click Proceed to Form a Contract with Given Retailer</h2>
+    <table class="table my-4" style="width: 30rem;">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Retailer Name</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+            {% if user.is_retailer %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td><a class = "btn btn-primary text-light" href="{%url 'contract' user.id %}">Proceed</a></td>
+                </tr>
+            {% else %}
+            {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+{%endblock%}

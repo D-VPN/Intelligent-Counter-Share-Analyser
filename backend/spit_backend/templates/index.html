@@ -27,6 +27,27 @@
       </tbody>
     </table>
   {% else %}
+    <a class="btn btn-info text-light my-3" href = {%url 'brand_contract'%} >Find a Retailer</a>
+      <table class="table my-4">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Retailer</th>
+            <th scope="col">Positions</th>
+            <th scope="col">Percent Visibility</th>
+            <th>Verify</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for contract in contracts %}
+            <tr>
+              <td>{{ contract.contract_retailer.username }}</td>
+              <td>{{ contract.desired_positions }}</td>
+              <td>{{ contract.precent_visibility }}</td>
+              <td><a class="btn btn-primary text-light">Verify</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
   {% endif %}
 {% else %}
   <div class='row my-5'>

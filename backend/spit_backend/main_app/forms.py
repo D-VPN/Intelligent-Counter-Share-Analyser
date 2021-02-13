@@ -3,7 +3,7 @@ from multiselectfield import MultiSelectField
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.contrib.auth.models import User
-from .models import User, RetailerUser, BrandUser
+from .models import User, RetailerUser, BrandUser, Contracts
 
 class RetailerRegisterForm(UserCreationForm):
     mobile_no = forms.CharField(required=True)
@@ -61,4 +61,11 @@ class RetailStoreInformationForm(forms.ModelForm):
 
     class Meta():
         model = RetailerUser
-        fields =  ['no_of_aisles', 'premium_positions', 'top_price', 'bottom_price', 'middle_price', 'corner_price']
+        fields = ['no_of_aisles', 'premium_positions', 'top_price', 'bottom_price', 'middle_price', 'corner_price']
+        
+
+class ContractForm(forms.ModelForm):
+
+    class Meta():
+        model = Contracts
+        fields = ['desired_positions', 'precent_visibility']
