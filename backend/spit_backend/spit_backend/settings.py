@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main_app',
+    'crispy_forms',
+    'multiselectfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,4 +127,5 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
 
-AUTH_USER_MODEL = "main_app.User" 
+AUTH_USER_MODEL = "main_app.User"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
