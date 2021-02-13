@@ -126,6 +126,8 @@ STATIC_ROOT=os.path.join(BASE_DIR,'assets')
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+LOGIN_REDIRECT_URL = 'index'
 
+LOGIN_URL = 'login'
 AUTH_USER_MODEL = "main_app.User"
 CRISPY_TEMPLATE_PACK = "bootstrap4"

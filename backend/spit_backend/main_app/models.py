@@ -16,12 +16,12 @@ class RetailerUser(models.Model):
     mobile_no = models.CharField(max_length=10,null=False, unique=True)
     email_id = models.EmailField(max_length=100, null=False)
     address = models.CharField(max_length=200, null=False)
-    no_of_aisles = models.IntegerField()
+    no_of_aisles = models.IntegerField(null=True)
     premium_positions = MultiSelectField(choices=POSITIONS_AVAILABLE)
-    top_price = models.IntegerField()
-    bottom_price = models.IntegerField()
-    middle_price = models.IntegerField()
-    corner_price = models.IntegerField()
+    top_price = models.IntegerField(null=True)
+    bottom_price = models.IntegerField(null=True)
+    middle_price = models.IntegerField(null=True)
+    corner_price = models.IntegerField(null=True)
 
 class BrandUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
