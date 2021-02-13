@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{%block content%}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 col-sm-10 col-12">
+            <h2 class='text-center my-4'>Contract With {{this_user.username}}</h2>
+            <p><b>Number of Aisles :</b> {{ retailer.no_of_aisles }}</p>
+            <p><b>Premium Positions :</b> {{ retailer.premium_positions }} <span class="badge badge-warning">Premium</span></td></p>
+            <p><b>Top Price :</b> ${{ retailer.top_price }}</p>
+            <p><b>Middle Price :</b> ${{ retailer.middle_price }}</p>
+            <p><b>Bottom Price :</b> ${{ retailer.bottom_price }}</p>
+            <p><b>Corner Price :</b> ${{ retailer.corner_price }}</p>
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+{%endblock%}

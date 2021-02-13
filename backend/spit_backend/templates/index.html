@@ -1,37 +1,100 @@
 {% extends 'base.html' %}
 {%block content%}
 {% if user.is_authenticated %}
-  <h3 class='text-center'>Welcome {{ user.username }}</h3>
+  <h3>Welcome  {{ user.username }}</h3>
+  {% if user.is_retailer %}
+    <a class="btn btn-info text-light my-3" href = {%url 'retailer_info'%} >Add Store Details</a>
+    <table class="table my-4">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">No of Aisles</th>
+          <th scope="col">Premium Positions</th>
+          <th scope="col">Top Price</th>
+          <th scope="col">Middle Price</th>
+          <th scope="col">Bottom Price</th>
+          <th scope="col">Corner Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th >{{ retailer.no_of_aisles }}</th>
+          <td>{{ retailer.premium_positions }}  <span class="badge badge-warning">Premium</span></td>
+          <td>{{ retailer.top_price }}</td>
+          <td>{{ retailer.middle_price }}</td>
+          <td>{{ retailer.bottom_price }}</td>
+          <td>{{ retailer.corner_price }}</td>
+        </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <a class="btn btn-info text-light my-3" href = {%url 'brand_contract'%} >Find a Retailer</a>
+      <table class="table my-4">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Retailer</th>
+            <th scope="col">Positions</th>
+            <th scope="col">Percent Visibility</th>
+            <th>Verify</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for contract in contracts %}
+            <tr>
+              <td>{{ contract.contract_retailer.username }}</td>
+              <td>{{ contract.desired_positions }}</td>
+              <td>{{ contract.precent_visibility }}</td>
+              <td><a class="btn btn-primary text-light">Verify</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  {% endif %}
 {% else %}
-  <h2>Hello</h2>
-{% endif %}
+  <div class='row my-5'>
+    <div class='col-md-6'>
+      <h1 class="display-2 text-success">"Jo Dikhta Hai</h1>
+      <h1 class="display-2 text-success">Wo Bikta Hai!"</h1>
+      <h4>We provide customized in-store solutions.</h4>
+      <a class="btn btn-primary btn-lg text-light my-3">Get Started</a>
+    </div>
+    <div class='col-md-6'>
+      <img src="https://images.squarespace-cdn.com/content/v1/59dfcb73bebafbbfb1f7dce0/1556560073206-Y39YC0VGVVXO0LE89W15/ke17ZwdGBToddI8pDm48kJT_2J6XFkZ4A0j8htwvU0B7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UcMD6x-hl2X-WBAVIUJ41ulH4_9J5mGe2uutuE2XNL9T0NBnIAefnahSEPfJBpXmhw/shutterstock_1079774846.jpg" height="400px" width="600px">
+    </div>
+  </div>
 
-
-<div class='row'>
+<div class='row my-5'>
   <div class='col-md-6'>
-    <h4>Our Product</h4>
-    <p>We have built an intelligent system that'll enable you to 
+  <div class="card">
+    <div class="card-header">
+        <h4>Our Product</h4>
+    </div>
+    <p class="px-3 my-3">We have built an intelligent system that'll enable you to 
       ensure that you get the most premium locations on a shelf in a store.
       Your product will be in the eyes of the customer at all times. 
       You'll decide how much visibility you want & pay accordingly.
       You can also check if the store is doing justice to your money.
     </p>
   </div>
-</div>
-
-<div class='row'>
-  <div class='col-md-6'></div>
+  </div>
   <div class='col-md-6'>
-    <h4>Our USP</h4>
-    <p>We act as a one-stop destination for both, a Store-Owner and a Brand-Owner. 
+  <div class="card">
+    <div class="card-header">
+        <h4>Our USP</h4>
+    </div>
+    <p class="px-3 my-3">We act as a one-stop destination for both, a Store-Owner and a Brand-Owner. 
       You can register with us and view personalized dashboards as per your role and check and handle everything from a single location.
       Access live CCTV camera feed if you own the store and manage your shelves. Check the feed as a brand owner to know your 
       product is getting the advertisement it deserves!
     </p>
   </div>
 </div>
+</div>
+{% endif %}
 
-<div class='row'>
+
+
+
+{% comment %} <div class='row'>
   
   <div class='col-md-6'>
     <h4>Our Team</h4>
@@ -45,7 +108,7 @@
       <a href='https://github.com/darshansatra1'>Darshan Satra</a>
     </p>
   </div>
-</div>
+</div> {% endcomment %}
 
 <br><br>
 
