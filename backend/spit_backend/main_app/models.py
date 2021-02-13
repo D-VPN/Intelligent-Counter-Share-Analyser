@@ -14,7 +14,7 @@ class User(AbstractUser):
 
 class BrandUser(models.Model):
     user = models.OneToOneField(User, related_name='brand_parent_user', on_delete=models.CASCADE)
-    mobile_no = models.CharField(max_length=10,null=False, unique=True)
+    mobile_no = models.CharField(max_length=10,null=False)
     email_id = models.EmailField(max_length=100, null=False)
     address = models.CharField(max_length=200, null=False)
     brand_logo = models.ImageField(upload_to='profile_pics')
