@@ -16,7 +16,7 @@ class RetailerRegisterForm(UserCreationForm):
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)
-        user.is_student = True
+        user.is_retailer = True
         user.save()
         retailer = RetailerUser.objects.create(user=user)
         retailer.mobile_no = self.cleaned_data.get('mobile_no')
@@ -27,8 +27,8 @@ class RetailerRegisterForm(UserCreationForm):
         retailer.top_price = None
         retailer.bottom_price = None
         retailer.middle_price = None
-        retailer.middle_price = None
-        # student.interests.add(*self.cleaned_data.get('interests'))
+        retailer.corner = None
+
         return user
 
 class BrandRegisterForm(UserCreationForm):
@@ -42,7 +42,7 @@ class BrandRegisterForm(UserCreationForm):
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)
-        user.is_student = True
+        user.is_brand = True
         user.save()
         brand = BrandUser.objects.create(user=user)
         brand.mobile_no = self.cleaned_data.get('mobile_no')
@@ -50,3 +50,15 @@ class BrandRegisterForm(UserCreationForm):
         brand.address = self.cleaned_data.get('address')
         # student.interests.add(*self.cleaned_data.get('interests'))
         return user
+
+class RetailStoreInformationForm(forms.ModelForm):
+    no_of_aisles = forms.IntegerField()
+    premium_positions = MultiSelectField()
+    top_price = forms.IntegerField()
+    bottom_price = forms.IntegerField()
+    middle_price = forms.IntegerField()
+    corner_price = forms.IntegerField()
+
+    class Meta():
+        model = RetailerUser
+        fields =  ['no_of_aisles', 'premium_positions', 'top_price', 'bottom_price', 'middle_price', 'corner_price']
