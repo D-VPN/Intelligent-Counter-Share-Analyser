@@ -19,6 +19,22 @@ class RetailerRegisterView(CreateView):
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'retailer'
         return super().get_context_data(**kwargs)
+    
+    def form_valid(self, form):
+        form.save()
+        return redirect('login')
 
-def register_brand(request):
-    return render(request,'register-brand.html')
+
+class BrandRegisterView(CreateView):
+    model = User
+    form_class = BrandRegisterForm
+    template_name = 'register-brand.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'brand'
+        return super().get_context_data(**kwargs)
+    
+    def form_valid(self, form):
+        form.save()
+        return redirect('login')
+    
