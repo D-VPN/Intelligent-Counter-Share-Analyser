@@ -7,3 +7,9 @@ def index(request):
 
 def login(request):
     return render(request,'login.html')
+    
+def register_retailer(request):
+    return render(request,'register-retailer.html')
+
+def register_brand(request):
+    return render(request,'register-brand.html')

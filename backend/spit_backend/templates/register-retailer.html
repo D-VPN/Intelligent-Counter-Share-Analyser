@@ -15,7 +15,7 @@
     <div class='container'>
         <!--NAVBAR-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{% url 'index' %}">Counter Share Analyser</a>
+            <a class="navbar-brand" href="#">Counter Share Analyser</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,19 +25,16 @@
                   <a class="nav-link" href="{% url 'login' %}">Login <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Register
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'register_retailer' %}">Register As Retailer</a>
-                    <a class="dropdown-item" href="{% url 'register_brand' %}">Register As Brand</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Register
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{% url 'register_retailer' %}">Register As Retailer</a>
+                      <a class="dropdown-item" href="{% url 'register_brand' %}">Register As Brand</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </li>
               </ul>
             </div>
         </nav>
@@ -50,9 +47,9 @@
                 <div class="wrap-login100">
                     <div class="login100-form-title" >
                         <span class="login100-form-title-1">
-                            Sign In
+                            Register As A Retailer
                         </span>
-                    </div>
+                    </div> <!-- username,password,email-id,brandlogo,address, password -->
     
                     <form class="login100-form validate-form">
                         <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
