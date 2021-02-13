@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Welcome {{retailer.user_name}}, here is your current data</h3>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Brand Name</th>
+        <th>Shelf</th>
+        <th>Percetage Visibility Chosen</th>
+        <th>Price Paid</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+        <td>70000</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+        <td>80000</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+        <td>90000</td>
+      </tr>
+    </tbody>
+  </table>
+{%endblock%}

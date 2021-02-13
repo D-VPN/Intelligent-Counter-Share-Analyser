@@ -1,107 +1,48 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% extends 'base.html' %}
+{%block content%}
 
-    <title>Counter Share Analyser</title>
-</head>
-<body>
-    
-    <div class='container'>
+<h3 class='text-center'>Welcome User!</h3>
 
-        <!--NAVBAR-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{% url 'index' %}">Counter Share Analyser</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'login' %}">Login <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Register
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'register_retailer' %}">Register As Retailer</a>
-                    <a class="dropdown-item" href="{% url 'register_brand' %}">Register As Brand</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-              </ul>
-            </div>
-        </nav>
-        <!--NAVBAR ENDS-->
+<div class='row'>
+  <div class='col-md-6'>
+    <h4>Our Product</h4>
+    <p>We have built an intelligent system that'll enable you to 
+      ensure that you get the most premium locations on a shelf in a store.
+      Your product will be in the eyes of the customer at all times. 
+      You'll decide how much visibility you want & pay accordingly.
+      You can also check if the store is doing justice to your money.
+    </p>
+  </div>
+</div>
 
+<div class='row'>
+  <div class='col-md-6'></div>
+  <div class='col-md-6'>
+    <h4>Our USP</h4>
+    <p>We act as a one-stop destination for both, a Store-Owner and a Brand-Owner. 
+      You can register with us and view personalized dashboards as per your role and check and handle everything from a single location.
+      Access live CCTV camera feed if you own the store and manage your shelves. Check the feed as a brand owner to know your 
+      product is getting the advertisement it deserves!
+    </p>
+  </div>
+</div>
 
-        <!--MAIN CONTENT-->
-        <div class='text-center mt-5'>
-            <h3>Start Live Video Captuing</h3>
-            <button class='btn btn-success'>Start</button>
-        </div>
-        <!--MAIN CONTENT ENDS-->
+<div class='row'>
+  
+  <div class='col-md-6'>
+    <h4>Our Team</h4>
+    <p>
+      <a href='https://github.com/absolute-nil'>Nikhil Sharma</a>
+      <br>
+      <a href='https://github.com/param-s-8'>Param Shendekar</a>
+      <br>
+      <a href='https://github.com/vishalsalgond'>Vishal Salgond</a>
+      <br>
+      <a href='https://github.com/darshansatra1'>Darshan Satra</a>
+    </p>
+  </div>
+</div>
 
-        <br><br><br><br><br><br>
-        <!--FOOTER-->
-        <footer class="footer bg-light text-center text-lg-start">
-        <!-- Grid container -->
-        <div class="container p-4">
-        <!--Grid row-->
-        <div class="row">
-        <!--Grid column-->
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Counter Share Analysis for FMCG companies</h5>
-                <p>An intelligent counter share analyser that can analyse video,
-                images and derive the % of brand presence on a particular section.
-                </p>
-            </div>
-        <!--Grid column-->
+<br><br>
 
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase mb-0">Links</h5>
-
-            <ul class="list-unstyled">
-            <li>
-                <a href="#!" class="text-dark">Link 1</a>
-            </li>
-            <li>
-                <a href="#!" class="text-dark">Link 2</a>
-            </li>
-            <li>
-                <a href="#!" class="text-dark">Link 3</a>
-            </li>
-            <li>
-                <a href="#!" class="text-dark">Link 4</a>
-            </li>
-            </ul>
-        </div>
-        <!--Grid column-->
-        </div>
-        <!--Grid row-->
-        </div>
-        <!-- Grid container -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-        © 2021 Copyright:
-        <a class="text-dark" href="https://github.com/D-VPN/Intelligent-Counter-Share-Analyser">Team D-VPN</a>
-        </div>
-        </footer>
-        <!--FOOTER ENDS-->
-
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html> 
+{%endblock%}

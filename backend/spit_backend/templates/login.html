@@ -1,140 +1,25 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% extends 'base.html' %}
+{%block content%}
 
-    <title>Counter Share Analyser</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login-util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/login-main.css' %}">
-</head>
-<body>
-    <div class='container'>
-        <!--NAVBAR-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{% url 'index' %}">Counter Share Analyser</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'login' %}">Login <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Register
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'register_retailer' %}">Register As Retailer</a>
-                    <a class="dropdown-item" href="{% url 'register_brand' %}">Register As Brand</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-              </ul>
+<div class='row'>
+    <div class='col-md-2'></div>
+    <div style='padding: 50px 50px;' class='col-md-8'>
+        <h2>Login</h2>
+        <form method='POST' > 
+            <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" placeholder="Enter email" id="email" name='email'> 
             </div>
-        </nav>
-        <!--NAVBAR ENDS-->
-
-
-        <!--MAIN CONTENT-->
-        <div class="limiter">
-            <div class="container-login100">
-                <div class="wrap-login100">
-                    <div class="login100-form-title" >
-                        <span class="login100-form-title-1">
-                            Sign In
-                        </span>
-                    </div>
-    
-                    <form class="login100-form validate-form">
-                        <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                            <span class="label-input100">Username</span>
-                            <input class="input100" type="text" name="username" placeholder="Enter username">
-                            <span class="focus-input100"></span>
-                        </div>
-    
-                        <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                            <span class="label-input100">Password</span>
-                            <input class="input100" type="password" name="pass" placeholder="Enter password">
-                            <span class="focus-input100"></span>
-                        </div>
-    
-                        <div class="flex-sb-m w-full p-b-30">
-                            <div>
-                                <a href="#" class="txt1">
-                                    Forgot Password?
-                                </a>
-                            </div>
-                        </div>
-    
-                        <div class="container-login100-form-btn">
-                            <button class="login100-form-btn">
-                                Login
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" placeholder="Enter password" id="pwd" name='pwd'>
             </div>
-        </div>
-        <!--MAIN CONTENT ENDS-->
-        <br><br><br>
-        <!--FOOTER-->
-        <footer class="footer bg-light text-center text-lg-start">
-        <!-- Grid container -->
-        <div class="container p-4">
-        <!--Grid row-->
-        <div class="row">
-        <!--Grid column-->
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Counter Share Analysis for FMCG companies</h5>
-                <p>An intelligent counter share analyser that can analyse video,
-                images and derive the % of brand presence on a particular section.
-                </p>
-            </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase mb-0">Links</h5>
-
-            <ul class="list-unstyled">
-            <li>
-                <a href="#!" class="text-dark">Link 1</a>
-            </li>
-            <li>
-                <a href="#!" class="text-dark">Link 2</a>
-            </li>
-            <li>
-                <a href="#!" class="text-dark">Link 3</a>
-            </li>
-            <li>
-                <a href="#!" class="text-dark">Link 4</a>
-            </li>
-            </ul>
-        </div>
-        <!--Grid column-->
-        </div>
-        <!--Grid row-->
-        </div>
-        <!-- Grid container -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-        © 2021 Copyright:
-        <a class="text-dark" href="https://github.com/D-VPN/Intelligent-Counter-Share-Analyser">Team D-VPN</a>
-        </div>
-        </footer>
-        <!--FOOTER ENDS-->
+        
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-warning">Reset</button>
+        </form>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html> 
+</div>
+
+{%endblock%}
