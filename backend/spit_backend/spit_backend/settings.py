@@ -124,3 +124,5 @@ STATIC_ROOT=os.path.join(BASE_DIR,'assets')
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+
+AUTH_USER_MODEL = "users_management.User" 
