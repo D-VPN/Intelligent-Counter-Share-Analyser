@@ -2,10 +2,10 @@ from django.db import models
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import AbstractUser
 
-POSITIONS_AVAILABLE = ((1, 'TOP'),
-               (2, 'MIDDLE'),
-               (3, 'BOTTOM'),
-               (4, 'CORNER'))
+POSITIONS_AVAILABLE = (('Top', 'TOP'),
+               ('Middle', 'MIDDLE'),
+               ('Bottom', 'BOTTOM'),
+               ('Corner', 'CORNER'))
 
 class User(AbstractUser):
     is_retailer = models.BooleanField(default=False)
@@ -13,7 +13,7 @@ class User(AbstractUser):
 
 class RetailerUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    mobile_no = models.CharField(max_length=10,null=False, unique=True)
+    mobile_no = models.CharField(max_length=10,null=False)
     email_id = models.EmailField(max_length=100, null=False)
     address = models.CharField(max_length=200, null=False)
     no_of_aisles = models.IntegerField(null=True)

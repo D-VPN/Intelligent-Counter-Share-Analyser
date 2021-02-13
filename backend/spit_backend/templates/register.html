@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block content%}
+    <div class="card mx-5">
+    <div class="card-header">
+        Welcome
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Sign Up for a Free Account</h5>
+        <p class="card-text">Select below the type of account you want to create</p>
+        <a href="{% url 'register_retailer' %}" class="btn btn-info">I'm a Retailer</a>
+        <a href="{% url 'register_brand' %}" class="btn btn-warning">I'm a Brand</a>
+    </div>
+    </div>
+{%endblock%}

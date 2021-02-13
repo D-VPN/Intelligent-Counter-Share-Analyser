@@ -2,16 +2,14 @@ from django.http import HttpResponse,HttpResponseServerError, HttpResponseRedire
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.views.decorators import gzip
-from .models import User
-from .forms import RetailerRegisterForm, BrandRegisterForm
+from .models import User, RetailerUser, BrandUser
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from .forms import RetailerRegisterForm, BrandRegisterForm, RetailStoreInformationForm
 import cv2
 import numpy as np
 import time
 import os
-
-# Create your views here.
-def index(request):
-    return render(request,'index.html')
 
 def login(request):
     return render(request,'login.html')
@@ -42,6 +40,16 @@ def camera_on(request):
     except :
         return "error"
 
+# Create your views here.
+def index(request):
+    try:
+        retailer = RetailerUser.objects.get(user=request.user)
+        return render(request, 'index.html', {'retailer': retailer})
+    except:
+        return render(request, 'index.html')
+    
+def register(request):
+    return render(request,'register.html')
     
 class RetailerRegisterView(CreateView):
     model = User
@@ -53,7 +61,8 @@ class RetailerRegisterView(CreateView):
         return super().get_context_data(**kwargs)
     
     def form_valid(self, form):
-        form.save()
+        user = form.save()
+        login(self.request, user)
         return redirect('login')
 
 
@@ -67,6 +76,30 @@ class BrandRegisterView(CreateView):
         return super().get_context_data(**kwargs)
     
     def form_valid(self, form):
-        form.save()
+        user = form.save()
+        login(self.request, user)
         return redirect('login')
     
+@login_required
+def retailer_info(request):
+    if request.method == 'POST':
+        form = RetailStoreInformationForm(request.POST)
+        if form.is_valid():
+            # form.save()
+            retailer = RetailerUser.objects.get(user=request.user)
+            print(form.cleaned_data.get('premium_positions'))
+            retailer.no_of_aisles = form.cleaned_data.get('no_of_aisles')
+            retailer.premium_positions = form.cleaned_data.get('premium_positions')
+            retailer.top_price = form.cleaned_data.get('top_price')
+            retailer.bottom_price = form.cleaned_data.get('bottom_price')
+            retailer.middle_price = form.cleaned_data.get('middle_price')
+            retailer.corner_price = form.cleaned_data.get('corner_price')
+            retailer.save()
+            return redirect('index')
+
+        else:
+            print(form.errors)
+    else:
+        form = RetailStoreInformationForm()
+    return render(request, 'retailer_info.html', {'form': form})
+            
