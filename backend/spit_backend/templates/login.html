@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Counter Share Analyser</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login-util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login-main.css' %}">
 </head>
 <body>
-    
     <div class='container'>
-
         <!--NAVBAR-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Counter Share Analyser</a>
@@ -21,25 +22,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="login.html">Login <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Register</a>
                 </li>
-                <!-- <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
-                </li> -->
               </ul>
             </div>
         </nav>
@@ -47,13 +34,47 @@
 
 
         <!--MAIN CONTENT-->
-        <div class='text-center mt-5'>
-            <h3>Start Live Video Captuing</h3>
-            <button class='btn btn-success'>Start</button>
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <div class="login100-form-title" >
+                        <span class="login100-form-title-1">
+                            Sign In
+                        </span>
+                    </div>
+    
+                    <form class="login100-form validate-form">
+                        <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                            <span class="label-input100">Username</span>
+                            <input class="input100" type="text" name="username" placeholder="Enter username">
+                            <span class="focus-input100"></span>
+                        </div>
+    
+                        <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                            <span class="label-input100">Password</span>
+                            <input class="input100" type="password" name="pass" placeholder="Enter password">
+                            <span class="focus-input100"></span>
+                        </div>
+    
+                        <div class="flex-sb-m w-full p-b-30">
+                            <div>
+                                <a href="#" class="txt1">
+                                    Forgot Password?
+                                </a>
+                            </div>
+                        </div>
+    
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <!--MAIN CONTENT ENDS-->
-
-        <br><br><br><br><br><br>
+        <br><br><br>
         <!--FOOTER-->
         <footer class="footer bg-light text-center text-lg-start">
         <!-- Grid container -->
@@ -99,7 +120,6 @@
         </div>
         </footer>
         <!--FOOTER ENDS-->
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
