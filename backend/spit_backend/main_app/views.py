@@ -14,6 +14,11 @@ def login(request):
 class RetailerRegisterView(CreateView):
     model = User
     form_class = RetailerRegisterForm
+    template_name = 'register-retailer.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'retailer'
+        return super().get_context_data(**kwargs)
 
 def register_brand(request):
     return render(request,'register-brand.html')

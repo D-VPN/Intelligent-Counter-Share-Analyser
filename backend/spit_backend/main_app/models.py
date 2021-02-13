@@ -9,7 +9,7 @@ POSITIONS_AVAILABLE = ((1, 'TOP'),
 
 class User(AbstractUser):
     is_retailer = models.BooleanField(default=False)
-    is_teacher = models.BooleanField(default=False)
+    is_brand = models.BooleanField(default=False)
 
 class RetailerUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
