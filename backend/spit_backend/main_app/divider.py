@@ -227,3 +227,17 @@ def divide_image_into_parts(image,dir_name,threshold_x, threshold_y,img_dir=Fals
     print("Succesfully divided the image into" , total_img, "parts")
     
     return (y_sum,peaks,total_img)
+
+def detect_brand_in_shelf(shelf,brand,dir_name,file_name):
+    w, h = brand.shape[:-1]
+    res = cv2.matchTemplate(shelf, brand, cv2.TM_CCOEFF_NORMED)
+    threshold = .8
+    loc = np.where(res >= threshold)
+    for pt in zip(*loc[::-1]):  # Switch collumns and rows
+        cv2.rectangle(shelf, pt, (pt[0] + w, pt[1] + h), (255, 0, 0), 2)
+    cv2.imwrite(dir_name + '/' + file_name + str(i) + '.png', shelf)
+    
+    if len(loc[0]) == 0:
+        return False
+    else:
+        return True

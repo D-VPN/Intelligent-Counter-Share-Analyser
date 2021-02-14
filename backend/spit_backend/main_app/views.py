@@ -6,7 +6,7 @@ from .models import User, RetailerUser, BrandUser, Contracts
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import RetailerRegisterForm, BrandRegisterForm, RetailStoreInformationForm, ContractForm
-from .divider import divide_image_into_parts
+from .divider import divide_image_into_parts, detect_brand_in_shelf
 import cv2
 import numpy as np
 import time
@@ -149,8 +149,18 @@ def verify(request):
     shelf_image_3="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2020/02/931/523/Grocery-Store-iStock.jpg?ve=1&tl=1"
     shelf_production="Production Assets/Shelf.jpg"
 
-    #1st image shelf2/columns_final/column_0.png shelf2/columns_final
+
+    #1st image
     divide_image_into_parts(image=shelf_image_2, dir_name="process-images/shelf_2/columns_2",threshold_x=50,threshold_y=100,row=False,link=True,invert=True,draw=False)
     divide_image_into_parts(image="process-images/shelf_2/columns_2/column_0.png",dir_name="process-images/shelf_2/rows_2", threshold_x=50,threshold_y=150,row=True, trim=False, img_dir=True,invert=False , link=False,draw=False)
     
+
+    #2nd image 
+    divide_image_into_parts(image=shelf_production,dir_name="process-images/shelf_production/columns_production", threshold_x=10,threshold_y=600,row=False,img_dir=True,invert=True , link=True,draw=False)
+    divide_image_into_parts(image="process-images/shelf_production/columns_production/column_0.png",dir_name="process-images/shelf_production/rows_production1",threshold_x=50,threshold_y=350,row=True, trim=True, img_dir=True,invert=False , link=False,draw=False)
+    divide_image_into_parts(image="process-images/shelf_production/columns_production/column_1.png",dir_name="process-images/shelf_production/rows_production2",threshold_x=50,threshold_y=350,row=True, trim=True, img_dir=True,invert=False , link=False,draw=False)
+    
+    detect_brand_in_shelf(shelf='D:\param\Competitions\SPIT 2021\Code\ML Models\Production Assets\Shelf.jpg',brand='D:\param\Competitions\SPIT 2021\Code\ML Models\Production Assets\\brands\Oreo.jpg',dir_name='D:\param\Competitions\SPIT 2021\Code\backend\spit_backend\static\output',file_name='final-output')
+    
+
     return render(request,'verify.html')
