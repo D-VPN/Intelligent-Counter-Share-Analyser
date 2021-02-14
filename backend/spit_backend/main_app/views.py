@@ -6,6 +6,7 @@ from .models import User, RetailerUser, BrandUser, Contracts
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import RetailerRegisterForm, BrandRegisterForm, RetailStoreInformationForm, ContractForm
+from .divider import divide_image_into_parts
 import cv2
 import numpy as np
 import time
@@ -140,4 +141,16 @@ class RetailerListView(ListView):
 
 
     
-            
+def verify(request):
+
+    #defining images
+    shelf_image="https://5.imimg.com/data5/SV/FD/MY-30413995/product-display-rack-500x500.jpg"
+    shelf_image_2="https://cdn.kqed.org/wp-content/uploads/sites/10/2020/03/RS42182_016_KQED_SanFranciscoMarinFoodBank_03182020_9244-qut-1020x680.jpg"
+    shelf_image_3="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2020/02/931/523/Grocery-Store-iStock.jpg?ve=1&tl=1"
+    shelf_production="Production Assets/Shelf.jpg"
+
+    #1st image shelf2/columns_final/column_0.png shelf2/columns_final
+    divide_image_into_parts(image=shelf_image_2, dir_name="process-images/shelf_2/columns_2",threshold_x=50,threshold_y=100,row=False,link=True,invert=True,draw=False)
+    divide_image_into_parts(image="process-images/shelf_2/columns_2/column_0.png",dir_name="process-images/shelf_2/rows_2", threshold_x=50,threshold_y=150,row=True, trim=False, img_dir=True,invert=False , link=False,draw=False)
+    
+    return render(request,'verify.html')
