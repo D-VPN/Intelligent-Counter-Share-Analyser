@@ -147,7 +147,7 @@ def verify(request):
     shelf_image="https://5.imimg.com/data5/SV/FD/MY-30413995/product-display-rack-500x500.jpg"
     shelf_image_2="https://cdn.kqed.org/wp-content/uploads/sites/10/2020/03/RS42182_016_KQED_SanFranciscoMarinFoodBank_03182020_9244-qut-1020x680.jpg"
     shelf_image_3="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2020/02/931/523/Grocery-Store-iStock.jpg?ve=1&tl=1"
-    shelf_production="Production Assets/Shelf.jpg"
+    shelf_production='D:\param\Competitions\SPIT 2021\Code\\backend\spit_backend\static\input\Shelf.jpg'
 
 
     #1st image
@@ -160,7 +160,13 @@ def verify(request):
     divide_image_into_parts(image="process-images/shelf_production/columns_production/column_0.png",dir_name="process-images/shelf_production/rows_production1",threshold_x=50,threshold_y=350,row=True, trim=True, img_dir=True,invert=False , link=False,draw=False)
     divide_image_into_parts(image="process-images/shelf_production/columns_production/column_1.png",dir_name="process-images/shelf_production/rows_production2",threshold_x=50,threshold_y=350,row=True, trim=True, img_dir=True,invert=False , link=False,draw=False)
     
-    detect_brand_in_shelf(shelf='D:\param\Competitions\SPIT 2021\Code\ML Models\Production Assets\Shelf.jpg',brand='D:\param\Competitions\SPIT 2021\Code\ML Models\Production Assets\\brands\Oreo.jpg',dir_name='D:\param\Competitions\SPIT 2021\Code\backend\spit_backend\static\output',file_name='final-output')
+    shelfimg = cv2.imread('D:\param\Competitions\SPIT 2021\Code\\backend\spit_backend\process-images\shelf_production\\rows_production1\\row_4.jpg')
+    brandimg = cv2.imread('D:\param\Competitions\SPIT 2021\Code\\backend\spit_backend\static\input\Oreo.jpg')
+    created = detect_brand_in_shelf(shelf=shelfimg,brand=brandimg,dir_name='D:\param\Competitions\SPIT 2021\Code\\backend\spit_backend\static\output',file_name='final-output')
+    if created:
+        imgpath = 'D:\param\Competitions\SPIT 2021\Code\backend\spit_backend\static\output\\final-output.png'
+    else:
+        imgpath = ''
     
 
-    return render(request,'verify.html')
+    return render(request,'verify.html',{'created':created,'img-path':imgpath})

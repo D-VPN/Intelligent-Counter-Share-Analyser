@@ -235,7 +235,7 @@ def detect_brand_in_shelf(shelf,brand,dir_name,file_name):
     loc = np.where(res >= threshold)
     for pt in zip(*loc[::-1]):  # Switch collumns and rows
         cv2.rectangle(shelf, pt, (pt[0] + w, pt[1] + h), (255, 0, 0), 2)
-    cv2.imwrite(dir_name + '/' + file_name + str(i) + '.png', shelf)
+    cv2.imwrite(dir_name + '/' + file_name  + '.png', shelf)
     
     if len(loc[0]) == 0:
         return False

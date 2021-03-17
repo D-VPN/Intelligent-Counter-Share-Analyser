@@ -1,5 +1,10 @@
 {%extends 'base.html'%}
 
 {%block content%}
-    <h5>This is Done!</h5>
+    {% if created %}
+        <h3>Visibility Detected As Needed</h3>
+        <img src='{{ imgpath }}'>
+    {% else%}
+        <h3>No Visibility Detected As Promised!</h3>
+    {% endif %}
 {%endblock%}
